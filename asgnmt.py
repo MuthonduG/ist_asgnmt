@@ -10,12 +10,13 @@ def shopping_branch_sales():
         # Get user inputs
         for i in range(num_item):
             market_branch = input("Enter market branch: \n")
-            item_code = int(input("Enter item code: \n"))
-            unit_price = float(input("Enter unit price: \n"))
-            item_qty = int(input("Enter item qty: \n"))
             
             # check if branch exists
             if market_branch.upper() in super_markets:
+                item_code = int(input("Enter item code: \n"))
+                unit_price = float(input("Enter unit price: \n"))
+                item_qty = int(input("Enter item qty: \n"))
+                
                 total = unit_price * item_qty
                 grand_total += total
 
@@ -30,8 +31,11 @@ def shopping_branch_sales():
                 else:
                     kori_e += total
             else:
-                print("Supermarket branch does not exist!!!")
-                break
+                if market_branch.upper() == "DONE":
+                    break;
+                else:
+                    print("Supermarket branch does not exist!!!")
+                    break;
             
         # Append branch sales to list of dictionaries
         branch_sales.append({"KORI A": kori_a})
