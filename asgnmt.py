@@ -1,11 +1,11 @@
 def shopping_branch_sales():
-    # Define branches kori a 
     super_markets = ["KORI A", "KORI B", "KORI C", "KORI D", "KORI E"]
-    {"brach_sales":[]}
+    branch_sales = []
+
     try:
         num_item = int(input("Enter estimated number of items: \n"))
         grand_total = 0
-        kori_a, kori_b, kori_c, kori_d, kori_e = [], [], [], [], []
+        kori_a, kori_b, kori_c, kori_d, kori_e = [0, 0, 0, 0, 0]
 
         # Get user inputs
         for i in range(num_item):
@@ -15,35 +15,37 @@ def shopping_branch_sales():
             item_qty = int(input("Enter item qty: \n"))
             
             # check if branch exists
-            if market_branch in super_markets:
+            if market_branch.upper() in super_markets:
                 total = unit_price * item_qty
                 grand_total += total
 
-                if market_branch.lower() == "KORI A".lower():
-                    kori = total
-                    kori_a.append(kori)
-                elif market_branch.lower() == "KORI B".lower():
-                    kori = total
-                    kori_b.append(kori)
-                elif market_branch.lower() == "KORI C".lower():
-                    kori = total
-                    kori_c.append(kori)
-                elif market_branch.lower() == "KORI D".lower():
-                    kori = total
-                    kori_d.append(kori)
+                if market_branch.upper() == "KORI A":
+                    kori_a += total
+                elif market_branch.upper() == "KORI B":
+                    kori_b += total
+                elif market_branch.upper() == "KORI C":
+                    kori_c += total
+                elif market_branch.upper() == "KORI D":
+                    kori_d += total
                 else:
-                    kori = total
-                    kori_e.append(kori)
-                     
-                
+                    kori_e += total
             else:
-                print("Supermarkrt branch does not exist!!!")
-                break;
+                print("Supermarket branch does not exist!!!")
+                break
             
+        # Append branch sales to list of dictionaries
+        branch_sales.append({"KORI A": kori_a})
+        branch_sales.append({"KORI B": kori_b})
+        branch_sales.append({"KORI C": kori_c})
+        branch_sales.append({"KORI D": kori_d})
+        branch_sales.append({"KORI E": kori_e})
+        
         print(f"Grand Total for Kori Supermarkets is {grand_total}")
-        print(f"Kori A total is {kori_a}")
+        print(f"Branch Sales: {branch_sales}")
+        # for branch in branch_sales:
+        #     print(branch)
 
     except ValueError:
-        print("Number of items must be an integer!!!") 
+        print("Number of items must be an integer!!!")
 
 shopping_branch_sales()
